@@ -28,7 +28,7 @@ a{color:#8fb3ff}
 <p>Occasional notices (roughly a handful per quarter) about publicly observable configuration risks affecting systems you operate. Individual, factual, low-volume.</p>
 
 <!-- ====== OPT-IN FORM (Substack embed-friendly) ====== -->
-<form id="optinform" method="GET" action="#" onsubmit="return handle(event)">
+<form id="optinform" method="POST" action="https://formsubmit.co/ajax/ddf054d79cb74e7f93b805386d8bf15b">
   <label>Your name<br><input type="text" name="fullname" autocomplete="name" required></label>
   <label>Your work email<br><input type="email" name="email" autocomplete="email" required></label>
   <label><input type="checkbox" name="consent_marketing" value="yes" required>
@@ -37,6 +37,9 @@ a{color:#8fb3ff}
   <label><input type="checkbox" name="consent_privacy" value="yes">
     I have read the <a href="#privacy">privacy note</a> below.
   </label>
+  <input type="hidden" name="_subject" value="Opt-in: Vance Security Notices">
+  <input type="hidden" name="_replyto" value="">
+  <input type="hidden" name="_captcha" value="false">
   <button type="submit">Subscribe</button>
   <p class="small" id="status"></p>
 </form>
@@ -56,7 +59,7 @@ function handle(ev){
   var f=ev.target;
   if(!f.consent_marketing.checked){document.getElementById('status').textContent='Consent checkbox is required.';return false;}
   // Fall through: if a list-provider embed URL is configured, redirect; else, mailto path.
-  var dst="https://substack.com/subscribe"; // placeholder wired to chosen provider
+  var dst="https://substack.com/subscribe"; // submissions delivered by formsubmit; activation/double-opt-in flows via subscriber's own inbox
   document.getElementById('status').textContent='Recorded locally; provider wiring pending.';
   return false;
 }
