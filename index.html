@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vance Security Consulting — Security Notice Updates</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#0f1420;color:#e8ecf3;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:32px 20px 60px}
+h1{font-size:1.6rem;margin-bottom:.4rem}
+h2{font-size:1.05rem;color:#8fb3ff;margin-top:2rem}
+p.small{color:#a7b0c0;font-size:.9rem}
+.card{background:#161d2c;border:1px solid #263049;border-radius:12px;padding:22px;margin-top:22px}
+input[type=text],input[type=email]{width:100%;padding:10px;margin:8px 0 14px;border-radius:8px;border:1px solid #33405e;background:#0c1019;color:#e8ecf3}
+input[type=checkbox]{margin-right:8px;transform:translateY(2px)}
+button{background:#2f6bff;border:none;color:#fff;padding:11px 22px;border-radius:8px;font-size:1rem;cursor:pointer}
+footer{margin-top:40px;font-size:.82rem;color:#7c8595;text-align:center}
+a{color:#8fb3ff}
+</style>
+</head>
+<body>
+<main>
+<h1>Vance Security Consulting</h1>
+<p>Solo consultancy — authorized-only, read-first methodology. We help small organizations find and fix publicly-visible configuration problems before they become incidents.</p>
+
+<div class="card">
+<h2>Subscribe for security updates</h2>
+<p>Occasional notices (roughly a handful per quarter) about publicly observable configuration risks affecting systems you operate. Individual, factual, low-volume.</p>
+
+<!-- ====== OPT-IN FORM (Substack embed-friendly) ====== -->
+<form id="optinform" method="GET" action="#" onsubmit="return handle(event)">
+  <label>Your name<br><input type="text" name="fullname" autocomplete="name" required></label>
+  <label>Your work email<br><input type="email" name="email" autocomplete="email" required></label>
+  <label><input type="checkbox" name="consent_marketing" value="yes" required>
+    I want to receive occasional security-related updates and notices from Vance Security Consulting.
+  </label>
+  <label><input type="checkbox" name="consent_privacy" value="yes">
+    I have read the <a href="#privacy">privacy note</a> below.
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="small" id="status"></p>
+</form>
+<!-- Backing mail-handling: Substack free tier gives double opt-in; alternative: Brevo signup URL. -->
+
+<p class="small"><strong>Privacy:</strong> we store your email solely to send you the notices you subscribed to. No sharing with third parties, no resale, unsubscribe link in every message.</p>
+</div>
+
+<footer>
+R. Vance — rvancekzf4@euploading.com<br>
+Read-only advisory practices; full reports on request.
+</footer>
+</main>
+<script>
+function handle(ev){
+  ev.preventDefault();
+  var f=ev.target;
+  if(!f.consent_marketing.checked){document.getElementById('status').textContent='Consent checkbox is required.';return false;}
+  // Fall through: if a list-provider embed URL is configured, redirect; else, mailto path.
+  var dst="https://substack.com/subscribe"; // placeholder wired to chosen provider
+  document.getElementById('status').textContent='Recorded locally; provider wiring pending.';
+  return false;
+}
+</script>
+</body>
+</html>
